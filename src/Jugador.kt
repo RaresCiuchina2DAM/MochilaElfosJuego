@@ -44,7 +44,7 @@ class Jugador {
 
     //Objeto a robar
     class Objeto {
-        private var peso = 0
+        var peso = 0
         var valor = 0
 
         constructor(peso : Int , valor : Int){
