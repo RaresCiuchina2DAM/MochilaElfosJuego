@@ -1,33 +1,43 @@
 class Jugador {
-    //variables
+    //Variables
     var sumValor = 0
     var sumPeso = 0
-    var oficio = ""
     var nombre = ""
-    var capacidadPesoMochilaMax = 0.0
+    var capacidadPesoMochilaMax = Dado(0, 0).tiradaUnica()*10.toDouble()
     var estadoVital = 0
     var razas = ""
     var clase = ""
-
+    var inventario = mutableListOf<Objeto>()
+    var monedero = Monedero().Puermacoins
 
     //contructor
-    constructor(oficio: String, nombre: String, capacidadPesoMochilaMax: Int, estadoVital : Int , razas : String , clase : String) {
-        this.oficio = oficio
+    constructor(nombre: String, estadoVital: Int, razas: String, clase: String) {
         this.nombre = nombre
-        this.capacidadPesoMochilaMax = capacidadPesoMochilaMax.toDouble()
-        this.estadoVital =estadoVital
+        this.estadoVital = estadoVital
         this.razas = razas
         this.clase = clase
     }
+    constructor(){}
+
 
     //impresión
     override fun toString(): String {
-        return "Jugador(oficio='$oficio'," +
-                " nombre='$nombre'," +
-                " capacidadPesoMochilaMax=$capacidadPesoMochilaMax, " +
-                "estadoVital = $estadoVital,"+
+        return "nombre='$nombre'," +
+                "capacidadPesoMochilaMax=$capacidadPesoMochilaMax, " +
+                "estadoVital = $estadoVital," +
                 "razas = $razas," +
                 "clase = $clase)"
+    }
+
+
+    fun toStringInventario() {
+        print("Inventario:")
+        for (i in inventario.indices) {
+            println("\n     Objeto[$i]=" +
+                    "\n        id: $i}" +
+                    "\n        valor: " + inventario[i].valor.toString() +
+                    "\n        peso: " + inventario[i].peso.toString())
+        }
     }
 
 }
@@ -42,14 +52,5 @@ class Jugador {
      --------------------------------------------------   */
 
 
-    //Objeto a robar
-    class Objeto {
-        var peso = 0
-        var valor = 0
 
-        constructor(peso : Int , valor : Int){
-            this.peso=peso
-            this.valor=valor
-        }
 
-    }

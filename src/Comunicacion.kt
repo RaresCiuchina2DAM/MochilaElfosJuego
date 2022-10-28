@@ -64,7 +64,7 @@ fun hablarConJugador(texto: String, jugador: Jugador): String {
     }else if (jugador.razas.equals("Elfo",true)){
             return cifradoCesar(comunicacion(texto, jugador),13)
         }else if (jugador.razas.equals("Enano",true)){
-                return comunicacion(texto,jugador).uppercase()
+                return comunicacion(texto,jugador).lowercase()
             }else if (jugador.razas.equals("Goblin",true)){
                     return cifradoCesar(comunicacion(texto, jugador),8)
     }
