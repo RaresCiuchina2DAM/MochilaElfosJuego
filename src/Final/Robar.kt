@@ -1,3 +1,5 @@
+package Final
+
 fun main() {
     val Ladron = Jugador("Jack",25,"","")
     var objeto1 = Objeto(1,8,30)
@@ -11,9 +13,10 @@ fun main() {
     robar(Ladron,listaObjetos)
 
 
+
 }
 
-fun robar(Ladron: Jugador, articulos: MutableList<Objeto>) {
+fun robar(Ladron: Jugador, articulos: MutableList<Objeto>): MutableList<Objeto> {
     //Saca la rentabilidad de cada objeto y lo añade en orden a un array del mismo tamaño que el original
     val rentabilidad = Array<Double>(size = articulos.size) { 0.00 }
     for (i in articulos.indices) {
@@ -29,6 +32,7 @@ fun robar(Ladron: Jugador, articulos: MutableList<Objeto>) {
                 if (Ladron.sumPeso + articulos[i].peso <= Ladron.capacidadPesoMochilaMax) {
                     Ladron.sumPeso += articulos[i].peso
                     Ladron.sumValor += articulos[i].valor
+
                     Ladron.inventario.add(articulos[i])
                     rentabilidad[i] = 0.0
                     articulos.removeAt(i)
@@ -39,6 +43,9 @@ fun robar(Ladron: Jugador, articulos: MutableList<Objeto>) {
         }
 
     }
+
+    return Ladron.inventario
+
 }
 
 
