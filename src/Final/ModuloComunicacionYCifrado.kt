@@ -90,5 +90,14 @@ fun cifradoCesar(texto: String, codigo: Int): String {
     return cifrado.toString()
 }
 
-
+fun hablar(personajeMercader: Jugador) {
+    var respuesta = ""
+    println("¿Que quieres decirle?")
+    respuesta = readLine()!!
+    while (respuesta.lowercase() != "Adios".lowercase()) {
+        hablarConJugador(respuesta, personajeMercader)
+        println("¿Que quieres decirle?")
+        respuesta = readLine()!!
+    }
+}
 

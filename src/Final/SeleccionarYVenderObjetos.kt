@@ -28,7 +28,7 @@ fun quieresvenderlo () : String {
     return opcion
 }
 
-fun venderObjeto(personajeVendedor: Jugador, personajeComprador : Jugador, objetoseleccionado: Objeto) {
+fun venderObjeto(personajeVendedor: Jugador, personajeComprador : Jugador, objetoseleccionado: Objeto, numObjetos: Int) {
     println("El objeto ha sido vendido")
 
     personajeComprador.inventario.add(objetoseleccionado)
@@ -45,13 +45,19 @@ fun venderObjeto(personajeVendedor: Jugador, personajeComprador : Jugador, objet
     println()
 
     //Intercanbio de dinero
-    println(toStringDinero(objetoseleccionado.valor))
+    if (numObjetos != 1){
+        objetoseleccionado.valor += objetoseleccionado.valor
+    }else objetoseleccionado.valor = objetoseleccionado.valor
+
     personajeVendedor.cantidadmonedas = cambioMonedas(objetoseleccionado.valor)
-    println("El jugador ${personajeVendedor.nombre} tiene ahora ${toStringDinero(IntArrayToInt(personajeVendedor.cantidadmonedas))}")
+    println("El jugador ${personajeVendedor.nombre} tiene ahora ${toStringDinero(objetoseleccionado.valor)}")
+    personajeVendedor.cantidadmonedas += cambioMonedas(objetoseleccionado.valor)
+
+
 
 }
 
-fun venderXObjetos(personajePrincipal : Jugador, personajeMercader : Jugador ) {
+fun venderXObjetos(personajePrincipal : Jugador, personajeMercader : Jugador) {
     var objetoseleccionado = Objeto(0,0,0)
     println("Cuantos objetos quieres vender?")
     val numObjetos = readLine()!!.toInt()
@@ -63,7 +69,7 @@ fun venderXObjetos(personajePrincipal : Jugador, personajeMercader : Jugador ) {
         )
         val siono = quieresvenderlo()
         if (siono.uppercase() == "S") {
-            venderObjeto(personajePrincipal, personajeMercader, objetoseleccionado)
+            venderObjeto(personajePrincipal, personajeMercader, objetoseleccionado,numObjetos)
         } else
             println("El objeto no se venderá")
 
